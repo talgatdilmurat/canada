@@ -231,7 +231,7 @@ function renderResults(view, ctx, state) {
 
 // ---------- cloze helpers ----------
 function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-function containsTerm(sentence, term) { return new RegExp(escapeRegExp(term), 'i').test(sentence); }
+function containsTerm(sentence, term) { return new RegExp(escapeRegExp(straighten(term)), 'i').test(sentence); }
 
 const straighten = s => String(s).replace(/[‘’ʼ]/g, "'");
 

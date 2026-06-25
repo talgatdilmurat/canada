@@ -38,6 +38,9 @@ export function showWelcome() {
         <div class="welcome-greet">${g.en}, ${NAME}</div>
         <div class="welcome-rule"></div>
         <div class="welcome-line">${line.en}<span class="tr">${line.tr}</span></div>
+        <button class="welcome-enter" aria-label="Enter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
       </div>
     </div>`);
   document.body.appendChild(overlay);
@@ -45,9 +48,13 @@ export function showWelcome() {
   let done = false;
   const dismiss = () => {
     if (done) return; done = true;
+    clearTimeout(timer);
     overlay.classList.add('out');
     setTimeout(() => overlay.remove(), 650);
   };
-  const timer = setTimeout(dismiss, reduce ? 1100 : 2400);
-  overlay.addEventListener('click', () => { clearTimeout(timer); dismiss(); });
+  // Tap to enter (button is the clear affordance); tapping anywhere also works.
+  // Auto-dismiss is a gentle fallback only, so the greeting no longer vanishes too quickly.
+  const timer = setTimeout(dismiss, reduce ? 4000 : 7000);
+  overlay.querySelector('.welcome-enter').addEventListener('click', e => { e.stopPropagation(); dismiss(); });
+  overlay.addEventListener('click', dismiss);
 }

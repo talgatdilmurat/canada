@@ -297,13 +297,28 @@ input,textarea{ font-family:inherit; color:var(--ink); }
 .welcome-rule{ width:38px; height:2px; background:var(--line); margin:22px auto; border-radius:2px; }
 .welcome-line{ font-family:var(--serif); font-style:italic; font-size:18px; line-height:1.5; color:var(--ink-soft); }
 .welcome-line .tr{ display:block; font-style:normal; font-family:var(--sans); font-size:13.5px; color:var(--tr-ink); margin-top:8px; }
-@media (prefers-reduced-motion:reduce){ .welcome-inner{ transition:opacity .3s; transform:none; } }
+.welcome-enter{ margin:34px auto 0; width:56px; height:56px; border-radius:50%; color:var(--accent);
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(251,250,246,.34);
+  backdrop-filter:blur(14px) saturate(1.3); -webkit-backdrop-filter:blur(14px) saturate(1.3);
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:0 12px 28px -16px rgba(40,36,26,.5), inset 0 1px 0 rgba(255,255,255,.5);
+  opacity:0; transform:translateY(8px) scale(.96);
+  transition:opacity .6s ease .35s, transform .7s cubic-bezier(.2,.8,.2,1) .35s, background .2s; }
+.welcome.show .welcome-enter{ opacity:1; transform:none; }
+.welcome-enter:active{ background:rgba(251,250,246,.62); }
+.welcome-enter svg{ width:22px; height:22px; }
+@media (prefers-reduced-motion:reduce){
+  .welcome-inner{ transition:opacity .3s; transform:none; }
+  .welcome-enter{ transition:opacity .3s; transform:none; }
+}
 
 /* ============ Canada edition: appbar back, units grid, unit detail, settings ============ */
-.appbar-l{ display:flex; align-items:flex-end; gap:6px; min-width:0; }
-.appbar-back{ background:none; border:none; color:var(--accent); display:flex; align-items:center; padding:0 1px 2px 0; }
+.appbar-l{ display:flex; align-items:center; gap:6px; min-width:0; }
+.appbar-back{ background:none; border:none; color:var(--accent); display:flex; align-items:center; padding:0 1px 2px 0; flex:none; }
+.appbar-back[hidden]{ display:none; }
 .appbar-back svg{ width:20px; height:20px; }
-.appbar h1{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.appbar h1{ min-width:0; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.16; }
 .unit-chip{ font-size:11px; font-weight:700; color:var(--accent); background:var(--accent-soft); border-radius:999px; padding:3px 8px; }
 
 .units-sub{ font-size:12.5px; color:var(--ink-soft); margin:-2px 2px 14px; }

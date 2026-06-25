@@ -66,14 +66,17 @@ function parseLoose(text) {
   return JSON.parse(s);
 }
 
-// Call expecting a JSON object. Prefills "{" and retries once on parse failure.
+// Call expecting a JSON object. Asks for JSON-only and retries once on parse failure.
+// NOTE: we do NOT prefill an assistant "{" turn — the 4.x models reject a trailing
+// assistant message ("This model does not support assistant message prefill"). The
+// prompts demand JSON-only and parseLoose() strips fences / extracts the object.
 async function callJSON({ model, system, content, max_tokens = 400 }) {
-  const messages = [{ role: 'user', content }, { role: 'assistant', content: '{' }];
+  const messages = [{ role: 'user', content }];
   let raw = await rawCall({ model, system, messages, max_tokens }); // network/auth errors bubble up
-  try { return parseLoose('{' + raw); }
+  try { return parseLoose(raw); }
   catch {
     raw = await rawCall({ model, system, messages, max_tokens });
-    try { return parseLoose('{' + raw); }
+    try { return parseLoose(raw); }
     catch { throw new AiError('parse', 'The AI returned something unexpected — please try again.'); }
   }
 }
@@ -199,5 +202,5 @@ Output JSON only.` },
 export async function askChapter(chapterText, question, unitTitle) {
   const system = cached(`You are a patient tutor helping a Turkish speaker study one chapter of Canada's official "Discover Canada" citizenship guide. Answer ONLY from the chapter text provided. For facts (dates, names, numbers, structures) use the chapter exactly — never invent or guess. You MAY explain, simplify, rephrase, and give analogies to make it click. Answer in Turkish, clearly and concisely. If the answer is not in the chapter, say so in Turkish and suggest she check the official guide.`);
   const content = `Chapter — ${unitTitle}:\n"""${chapterText}"""\n\nQuestion (in Turkish): "${question}"\n\nAnswer in Turkish.`;
-  return await rawCall({ model: MODELS.sonnet, system, messages: [{ role: 'user', content }], max_tokens: 700 });
+  return await rawCall({ model: MODELS.sonnet, system, messages: [{ role: 'user', content }], max_tokens: 1500 });
 }

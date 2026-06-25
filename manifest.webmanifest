@@ -1,7 +1,7 @@
 {
   "name": "Lexikon Canada",
   "short_name": "Canada",
-  "description": "A calm, personal vocabulary app for learning authentic everyday English.",
+  "description": "A calm, personal study companion for Canada's Discover Canada citizenship guide.",
   "start_url": ".",
   "scope": "./",
   "display": "standalone",

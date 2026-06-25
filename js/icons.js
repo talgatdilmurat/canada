@@ -26,4 +26,6 @@ export const ic = {
   camera: `<svg viewBox="0 0 24 24" ${S} stroke-width="1.8"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2L9 5h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>`,
   flame: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.2 3-1.5 4.5-1.5 7A2.5 2.5 0 0 0 13 11c.4-1 .2-2 .2-2 1.8 1.3 3.3 3.2 3.3 5.6A4.5 4.5 0 0 1 12 19a4.5 4.5 0 0 1-4.5-4.4c0-4 3-5.6 4.5-8.6 0-1.5 0-3 0-4z"/></svg>`,
   spark: `<svg viewBox="0 0 24 24" ${S} stroke-width="1.7"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg>`,
+  // speech bubble — matches the Decode tab glyph (used on the "Explain this" button)
+  decode: `<svg viewBox="0 0 24 24" ${S} stroke-width="1.8"><path d="M20 11.5a7.5 7.5 0 0 1-10.8 6.7L4 20l1.8-5.2A7.5 7.5 0 1 1 20 11.5Z"/><path d="M9 10.5h6M9 13.5h4"/></svg>`,
 };

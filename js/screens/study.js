@@ -47,7 +47,7 @@ function renderEmpty(view, ctx) {
 
 function renderCaughtUp(view, ctx) {
   view.innerHTML = '';
-  const ahead = soonest(pool(), 12);
+  const ahead = soonest(pool(), store.getSetting('dailyTarget', 10));
   view.appendChild(elFrom(`
     <div class="center-state">
       <div class="big">All caught up</div>
@@ -158,5 +158,5 @@ function renderComplete(view, ctx, state) {
   const more = view.querySelector('[data-act="more"]');
   if (more) more.addEventListener('click', () => startSession(view, ctx, dueCards(pool())));
   const q = view.querySelector('[data-go="quiz"]');
-  if (q) q.addEventListener('click', () => ctx.navigate('quiz'));
+  if (q) q.addEventListener('click', () => ctx.navigate('quiz', activeUnit ? 'u' + activeUnit : undefined));
 }

@@ -3,7 +3,7 @@
 // Shape: CONTENT[id] = { summaryEn, summaryTr, diagram:{labelEn,labelTr,children:[]}, toughWords:[{term,turkish,easyEn,easyTr}], chapterText }
 const BASE = 'https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/discover-canada/read-online/';
 export const SOURCE = {
-  1: 'applying-citizenship.html', 2: 'rights-resonsibilities-citizenship.html', 3: 'who-are-canadians.html',
+  1: 'applying-citizenship.html', 2: 'rights-responsibilities-citizenship.html', 3: 'who-are-canadians.html',
   4: 'canadas-history.html', 5: 'canadas-history.html', 6: 'modern-canada.html',
   7: 'how-canadians-govern-themselves.html', 8: 'federal-elections.html', 9: 'justice-system.html',
   10: 'canadian-symbols.html', 11: 'canadas-economy.html', 12: 'canadas-regions.html',

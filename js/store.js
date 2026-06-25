@@ -115,14 +115,14 @@ export function currentStreak() {
 // ---------- export / import ----------
 export function exportDeck() {
   const payload = {
-    app: 'lexikon', version: 1, exportedAt: new Date().toISOString(),
+    app: 'lexikon-ca', version: 1, exportedAt: new Date().toISOString(),
     cards: getCards(), meta: getMeta(),
   };
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `lexikon-backup-${todayStr()}.json`;
+  a.download = `lexikon-canada-backup-${todayStr()}.json`;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }

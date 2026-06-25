@@ -58,8 +58,12 @@ async function runDecode(view, ctx, call, { sourceText }) {
     renderResult(out, ctx, r, sourceText);
   } catch (e) {
     out.innerHTML = '';
-    out.appendChild(errorBox(e, () => out.querySelector('[data-retry]') && call()));
-    if (e.kind === 'auth') { const b = out.querySelector('[data-retry]'); if (b) b.onclick = () => ai.promptForKey(); }
+    // Retry must re-enter runDecode so the loading state + result actually render.
+    // For an auth error, fix the key first, then re-run only if a key was provided.
+    const retry = e.kind === 'auth'
+      ? async () => { if (await ai.promptForKey()) runDecode(view, ctx, call, { sourceText }); }
+      : () => runDecode(view, ctx, call, { sourceText });
+    out.appendChild(errorBox(e, retry));
   }
 }
 

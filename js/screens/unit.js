@@ -45,7 +45,7 @@ function renderCompanion(body, unit, ctx) {
         <div class="eyebrow">Study Companion</div>
         <p class="cmp-summary">This chapter's companion is being prepared from the official <i>Discover Canada</i> guide — a plain-language summary, a concept diagram, the toughest words, and a Turkish voice Ask.</p>
         <div class="soon-list" style="margin-top:14px"><span>Summary</span><span>Diagram</span><span>Toughest words</span><span>Ask</span></div>
-        <a class="cmp-source" style="margin-top:14px" href="${sourceUrl(unit.id)}" target="_blank" rel="noopener">Read the official chapter ${ic.extlink || ''}↗</a>
+        <a class="cmp-source" style="margin-top:14px" href="${sourceUrl(unit.id)}" target="_blank" rel="noopener">Read the official chapter ↗</a>
       </div>`;
     return;
   }
